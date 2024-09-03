@@ -139,8 +139,7 @@ export class CalendarViewComponent {
     let calendarEventList: CalendarEvent[];
 
     // Calculate the first day of the current month
-    const firstDay = new Date(actualDay.getFullYear(), actualDay.getMonth(), 1);
-    const startTime = firstDay.toISOString().split('T')[0] + 'T00:00:00';
+    const startTime = actualDay.toISOString().split('T')[0] + 'T00:00:00';
     
     // Calculate the last day of the current month
     const endTime = lastDay.toISOString().split('T')[0] + 'T23:59:59';
