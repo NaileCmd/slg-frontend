@@ -1,0 +1,35 @@
+<div class="login-container">
+    <mat-card>
+        <mat-card-title class="card-title">Bitte Anmeldedaten eingeben:</mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Username</mat-label>
+                        <input matInput formControlName="username" required autocomplete="username"/>
+                        <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+                            Username is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="fill" class="form-field">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password" required autocomplete="current-password"/>
+                        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+                            Password is required
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="form-group">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+                        Login
+                    </button>
+                </div>
+                <div class="form-group">
+                    <a mat-button routerLink="/user-create" class="create-user-link">Neuen User erstellen...</a>
+                </div>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

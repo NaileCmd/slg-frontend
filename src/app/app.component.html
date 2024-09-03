@@ -1,0 +1,28 @@
+<header>
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item routerLink="home" routerLinkActive="active">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-menu-item routerLink="education" routerLinkActive="active">
+      <mat-icon>school</mat-icon>
+      <span>Sachkunde</span>
+    </button>
+    <button mat-menu-item routerLink="calendar" routerLinkActive="active">
+      <mat-icon>calendar_month</mat-icon>
+      <span>Termine</span>
+    </button>
+    <button mat-menu-item routerLink="user" routerLinkActive="active">
+      <mat-icon>person</mat-icon>
+      <span>User</span>
+    </button>
+  </mat-menu>
+  <h1 style="margin: auto;">{{ headerText }}</h1>
+</header>
+
+<main>
+  <router-outlet></router-outlet>
+</main>

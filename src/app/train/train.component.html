@@ -1,0 +1,65 @@
+<ng-container *ngIf="!loading; else loadingTemplate">
+  <div class="above-container">
+    <mat-card class="question-card">
+      <section class="question-section">
+        <mat-card-header>
+          <mat-card-title>
+              <span>Frage {{ currentQuestionIndex + 1 }} / {{ questionResultList.length }}</span>
+              <span *ngIf="!isExam">Zeit: {{ elapsedTime }}</span>
+              <span *ngIf="isExam">{{ countdownTime }}</span>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div *ngIf="currentQuestionResult">
+            <div>{{ currentQuestionResult.question }}</div>
+          </div>
+        </mat-card-content>
+      </section>
+    </mat-card>
+
+    <mat-card class="answer-card">
+      <mat-card-content>
+        <section *ngIf="currentQuestionResult?.answers?.length ?? 0 > 0" class="answer-checkbox-section">
+          <ul>
+            <li *ngFor="let questionAnswer of currentQuestionResult?.answers; let i = index">
+              <mat-checkbox [id]="'answer-checkbox-' + i" [(ngModel)]="currentQuestionResult.givenAnswers[i]"
+                [disabled]="currentQuestionResult.isValidated" [ngClass]=getCheckboxClass(i)>
+                {{ questionAnswer.answer }}
+              </mat-checkbox>
+            </li>
+          </ul>
+        </section>
+        <section *ngIf="currentQuestionResult?.answer" class="answer-input-section">
+          <div class="answer-input">
+            <mat-form-field [ngClass]=getAnswerClass()>
+              <mat-label>Antwort hier eingeben</mat-label>
+              <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10"
+                [disabled]="currentQuestionResult.isValidated" [(ngModel)]="currentQuestionResult.givenAnswer">
+            </textarea>
+            </mat-form-field>
+          </div>
+          <div class="formatted-answer" [innerHTML]="currentQuestionResult.formattedAnswer">
+          </div>
+        </section>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="fixed-bottom">
+    <div class="example-button-row">
+      <button mat-stroked-button class="row_button" (click)="preQuestion()"
+        [disabled]="currentQuestionIndex < 1"><mat-icon>arrow_back_ios</mat-icon></button>
+      <button mat-stroked-button *ngIf="!isExam" class="row_button" (click)="checkAnswer()"
+        [disabled]="currentQuestionResult.isValidated"><mat-icon>rule</mat-icon></button>
+      <button mat-stroked-button class="row_button" (click)="nextQuestion()"
+        [disabled]="currentQuestionIndex >= questionResultList.length - 1"><mat-icon>arrow_forward_ios</mat-icon></button>
+      <button mat-stroked-button class="last_row_button" (click)="endTest()"><mat-icon>exit_to_app</mat-icon></button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loadingTemplate>
+  <p>Update Fragenkatalog...</p>
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</ng-template>
+

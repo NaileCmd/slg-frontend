@@ -1,0 +1,44 @@
+<mat-card *ngIf="selectedDay">
+    <mat-card-header>
+        <mat-card-title>Termine am {{ selectedDay.day | dateFormat }}</mat-card-title>
+        <mat-card-subtitle>
+            <button mat-icon-button color="primary" (click)="onAddEvent()" [disabled]="!isMember()">
+                <mat-icon>
+                    playlist_add
+                </mat-icon>
+            </button>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <ng-container *ngIf="selectedDay.dayEvents && selectedDay.dayEvents.length > 0; else noEventsMessage">
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let event of selectedDay.dayEvents; let i = index" [expanded]="i === 0">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            {{event.startTime | date:'shortTime'}} - {{ event.title }}
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            {{ event.description }}
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <div>
+                        <p><strong>Start Time:</strong> {{ event.startTime | date:'short' }}</p>
+                        <p><strong>End Time:</strong> {{ event.endTime | date:'short' }}</p>
+                        <p><strong>Location:</strong> {{ event.location.name }}</p>
+                        <p><strong>Members:</strong> {{ event.members }}</p>
+                        <p><strong>Disciplines:</strong> </p>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </ng-container>
+        <ng-template #noEventsMessage>
+            <p>keine Termine an diesem Tag vorhanden</p>
+        </ng-template>
+    </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="!selectedDay">
+    <mat-card-content>
+        <p>Please select a day to see the details.</p>
+    </mat-card-content>
+</mat-card>

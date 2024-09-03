@@ -1,0 +1,57 @@
+<section>
+  <div class="button-toggle-container">
+    <mat-button-toggle-group name="trainingOrExam" aria-label="Training or Exam" hideSingleSelectionIndicator="true" [(ngModel)]="selectedValue">
+      <mat-button-toggle value="test">Übung</mat-button-toggle>
+      <mat-button-toggle value="exam">Prüfung</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</section>
+<section class="selection" *ngIf="selectedValue === 'test'">
+  <mat-card>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>Katalogauswahl</mat-panel-title>
+        <mat-panel-description></mat-panel-description>
+      </mat-expansion-panel-header>
+      <ng-container *ngFor="let category of categories(); let categoryIndex = index">
+        <span class="example-list-section">
+          <mat-checkbox class="checkbox-margin" [checked]="category.isChecked"
+            [indeterminate]="isCategoryIndeterminate(category)" (change)="update($event.checked, categoryIndex)">
+            {{ category.name }}
+          </mat-checkbox>
+        </span>
+        <span class="example-list-section">
+          <ul>
+            <li *ngFor="let subCategory of category.subCategories; let subCategoryIndex = index">
+              <mat-checkbox [checked]="subCategory.isChecked"
+                (change)="update($event.checked, categoryIndex, subCategoryIndex)">
+                {{ subCategory.name }}
+              </mat-checkbox>
+            </li>
+          </ul>
+        </span>
+      </ng-container>
+    </mat-expansion-panel>
+    <section class="slider-container">
+      <div class="label-slider">
+        <span>Anzahl der Fragen:</span>
+        <label id="label-slider" class="label-slider-value">{{sliderValue}}</label>
+      </div>
+
+      <mat-slider min="10" max="150" step="1" value="70" showTickMarks>
+        <input matSliderThumb [(ngModel)]="sliderValue" #slider>
+      </mat-slider>
+    </section>
+
+  </mat-card>
+</section>
+
+<div class="fixed-bottom">
+  <div class="button-container">
+    <button mat-stroked-button class="start_button" (click)=start()>
+      <div>Starten</div>
+      <mat-icon>play_arrow</mat-icon>
+    </button>
+  </div>
+</div>
+

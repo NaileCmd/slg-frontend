@@ -1,0 +1,31 @@
+.form-group {
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-field {
+    width: 60%;
+    min-width: 100px; 
+    max-width: 400px; 
+}
+
+.card-title {
+
+    text-align: left;
+    font-size: 20px; 
+    margin-bottom: 20px; 
+    margin-top: 20px; 
+    margin-left: 50px; 
+}
+
+button {
+    font-size: 20px;
+    width: 100%;
+    max-width: 300px; 
+}
+
+.login-container {
+    padding-top: 20px;
+}

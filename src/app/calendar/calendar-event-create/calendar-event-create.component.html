@@ -1,0 +1,93 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title> </mat-card-title>
+        <mat-card-subtitle>
+
+
+
+        </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+        <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+
+            <div class="centered-toggle-group">
+                <mat-button-toggle-group formControlName="eventType" aria-label="Event Type">
+                    <mat-button-toggle value="TRAINING">Training</mat-button-toggle>
+                    <mat-button-toggle value="COMPETITION">Wettkampf</mat-button-toggle>
+                    <mat-button-toggle value="EDUCATION">Lehrgang</mat-button-toggle>
+                    <mat-button-toggle value="OTHERS">Sonstiges</mat-button-toggle>
+                </mat-button-toggle-group>
+            </div>
+
+            <!-- Title -->
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Überschrift</mat-label>
+                <input matInput formControlName="title" placeholder="bitte Überschrift angeben">
+                <mat-error *ngIf="eventForm.get('title')?.hasError('required')">
+                    Überschrift muss ausgefüllt werden
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Start Date and Time -->
+            <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                <mat-form-field appearance="fill" style="flex: 1;">
+                    <mat-label>Start Date</mat-label>
+                    <input matInput [matDatepicker]="startDatePicker" formControlName="startDate"
+                        placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #startDatePicker></mat-datepicker>
+                    <mat-error *ngIf="eventForm.get('startDate')?.hasError('required')">
+                        Beginndatum muss angegeben werden
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="flex: 1;">
+                    <mat-label>Start Time</mat-label>
+                    <input matInput type="time" formControlName="startTime">
+                    <mat-error *ngIf="eventForm.get('startTime')?.hasError('required')">
+                        Start time is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- End Date and Time -->
+            <div style="display: flex; gap: 16px; margin-bottom: 16px;">
+                <mat-form-field appearance="fill" style="flex: 1;">
+                    <mat-label>End Date</mat-label>
+                    <input matInput [matDatepicker]="endDatePicker" formControlName="endDate"
+                        placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+                    <mat-datepicker #endDatePicker></mat-datepicker>
+                    <mat-error *ngIf="eventForm.get('endDate')?.hasError('required')">
+                        End date is required
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="flex: 1;">
+                    <mat-label>End Time</mat-label>
+                    <input matInput type="time" formControlName="endTime">
+                    <mat-error *ngIf="eventForm.get('endTime')?.hasError('required')">
+                        End time is required
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <!-- Other form fields -->
+            <!-- Event Type -->
+
+
+            <!-- Location -->
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Location</mat-label>
+                <input matInput formControlName="location" placeholder="Event Location">
+                <mat-error *ngIf="eventForm.get('location')?.hasError('required')">
+                    Location is required
+                </mat-error>
+            </mat-form-field>
+
+            <!-- Submit Button -->
+            <button mat-raised-button color="primary" type="submit">Create Event</button>
+        </form>
+    </mat-card-content>
+</mat-card>

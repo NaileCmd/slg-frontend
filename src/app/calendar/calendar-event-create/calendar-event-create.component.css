@@ -1,0 +1,5 @@
+.centered-toggle-group {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-bottom: 16px; /* Space below the toggle group */
+  }

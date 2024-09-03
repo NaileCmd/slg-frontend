@@ -1,0 +1,79 @@
+<div class="container">
+  <mat-card class="question-card fixed-card">
+    <section class="question-section">
+      <mat-card-content>
+        <table class="table-answer-result">
+          <tr>
+            <th>Gesamt</th>
+            <th>Antworten:</th>
+            <th>Korrekt:</th>
+            <th>Falsch:</th>
+            <th>Zeit:</th>
+          </tr>
+          <tr>
+            <td>{{ testResult?.questionAmount }}</td>
+            <td>{{ testResult?.answeredQuestions }}</td>
+            <td>{{ testResult?.correctAnswers }}</td>
+            <td>{{ testResult?.incorrectAnswers }}</td>
+            <td>{{ testResult?.requiredTime }}</td>
+          </tr>
+        </table>
+      </mat-card-content>
+    </section>
+  </mat-card>
+  <mat-card class="scrollable-card">
+    <div>
+      <mat-accordion class="example-headers-align" multi>
+        <mat-expansion-panel *ngFor="let actualQuestion of filteredQuestionResultList; let i = index">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{ actualQuestion.question }}
+            </mat-panel-title>
+            <mat-icon [ngClass]="{'check-icon': actualQuestion.isCorrect, 'clear-icon': !actualQuestion.isCorrect}">
+              {{ actualQuestion.isCorrect ? 'check' : 'clear' }}
+            </mat-icon>
+          </mat-expansion-panel-header>
+          <section *ngIf="actualQuestion?.answers?.length ?? 0 > 0" class="answer-checkbox-section">
+            <ul>
+              <li *ngFor="let questionAnswer of actualQuestion?.answers; let checkIndex = index" class="answer-item">
+                <mat-checkbox [id]="'correct-answer-checkbox-' + checkIndex" disabled="true"
+                  class="correct-answer-checkbox" [checked]="questionAnswer.isChecked">
+                </mat-checkbox>
+                <mat-checkbox [id]="'answer-checkbox-' + checkIndex" disabled="true"
+                  [ngClass]="getCheckboxClass(actualQuestion, checkIndex)"
+                  [checked]="actualQuestion.givenAnswers[checkIndex]">
+                  {{ questionAnswer.answer }}
+                </mat-checkbox>
+              </li>
+            </ul>
+          </section>
+          <section *ngIf="actualQuestion?.answer" class="answer-input-section">
+            <div class="answer-input">
+              <div *ngIf="actualQuestion.formattedAnswer; else answerDisplay" class="formatted-answer"
+                [innerHTML]="actualQuestion.formattedAnswer">
+              </div>
+              <ng-template #answerDisplay>
+                <div class="formatted-answer">
+                  {{ actualQuestion.answer }}
+                </div>
+              </ng-template>
+              <mat-form-field class="full-width">
+                <textarea matInput cdkTextareaAutosize cdkAutosizeMinRows="1" cdkAutosizeMaxRows="10" disabled="true"
+                  [value]="actualQuestion.givenAnswer">
+                </textarea>
+              </mat-form-field>
+            </div>
+          </section>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-card>
+  <mat-card class="footer-card">
+    <mat-card-content>
+      <mat-slide-toggle [(ngModel)]="onlyWrong" (change)="applyFilter()">Nur falsche Antworten</mat-slide-toggle>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+

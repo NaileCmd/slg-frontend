@@ -1,0 +1,134 @@
+@use '@angular/material' as mat;
+
+$theme: mat.define-theme();
+
+.tertiary-checkbox {
+  @include mat.checkbox-color($theme, $color-variant: tertiary);
+}
+
+.secondary-checkbox {
+  @include mat.checkbox-color($theme, $color-variant: secondary);
+}
+
+.primary-checkbox {
+  @include mat.checkbox-color($theme, $color-variant: primary);
+}
+
+.error-checkbox {
+  @include mat.checkbox-color($theme, $color-variant: error);
+}
+
+.question-card {
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+::ng-deep .correct-checkbox .mdc-checkbox__background {
+  border-color: #1cc34e !important; 
+}
+
+::ng-deep .incorrect-checkbox .mdc-checkbox__background {
+  border-color: #db1010 !important; 
+}
+
+section {
+  display: table;
+}
+
+.example-label {
+  display: table-cell;
+  font-size: 14px;
+  margin-left: 8px;
+  min-width: 120px;
+}
+
+.example-flex-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.example-button-container {
+  display: flex;
+  justify-content: center;
+  width: 120px;
+}
+
+::ng-deep .incorrect-answer .mdc-text-field--filled {
+    width: 100%;
+    border-color: red;
+    border-width: 2px;
+    border-style: groove;    
+}
+
+::ng-deep .correct-answer .mdc-text-field--filled {
+  border-color: green;
+  border-width: 2px;
+  border-style: groove;
+  background-color: #D1EBEC;
+}
+
+.answer-input-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.answer-input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.answer-input .mat-mdc-form-field {
+  min-width: 100% !important;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px 0; /* Optional: adds padding to the fixed section */
+  padding-bottom: 20px;
+}
+
+.above-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.last_row_button {
+  margin-left: 5px !important;
+}
+
+.mat-mdc-button-base {
+  align-items: center;
+  justify-content: center;
+}
+
+.example-button-row {
+  display: table-cell;
+  max-width: 600px;
+}
+
+.example-button-row .mat-mdc-button-base {
+  margin: 4px 4px 4px 0;
+}
+
+.mat-mdc-card-title {
+  font-size: 1.25rem !important;
+  display: flex; 
+  justify-content: space-between; 
+  min-width: 85vw;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,94 @@
+
+ul {
+  list-style-type: none;
+}
+
+.mat-mdc-slider {
+  width: 100%;
+}
+
+
+.slider-container {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 10px;  
+  display: inline-block; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.label-slider {
+  font: Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: 500;  
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+mat-expansion-panel {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+
+.mat-slider {
+  width: 100%;
+}
+
+.button-toggle-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+mat-button-toggle-group {
+  display: flex;
+  width: 100%;
+  border-radius: 10px;
+}
+
+mat-button-toggle {
+  flex: 1;
+}
+
+mat-button-toggle {
+  font-size: var(--mat-expansion-header-text-size);
+  font-weight: var(--mat-expansion-header-text-weight)
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box; 
+  width: 100%;
+  padding: 10px;
+
+}
+
+mat-button {
+  font-size: var(--mat-expansion-header-text-size);
+  font-weight: var(--mat-expansion-header-text-weight);
+}
+
+mat-icon-button {
+  border-color: black;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white; /* Match the background of the container */
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a shadow to the fixed section */
+  padding: 10px 0; /* Optional: adds padding to the fixed section */
+  padding-bottom: 20px;
+}
+
+.start_button {
+  display: flex;
+  align-items: center; /* Center items vertically */
+}
+
